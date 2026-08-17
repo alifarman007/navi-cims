@@ -28,20 +28,20 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
       {open && <div className="fixed inset-0 z-30 bg-black/40 xl:hidden" onClick={onClose} />}
       <aside
         className={cn(
-          'fixed inset-y-0 left-0 z-40 flex w-sidebar flex-col bg-sidebar-base text-sidebar-text transition-transform duration-200 xl:translate-x-0',
+          'fixed inset-y-0 left-0 z-40 flex w-[280px] flex-col 2xl:w-sidebar bg-sidebar-base text-sidebar-text transition-transform duration-200 xl:translate-x-0',
           open ? 'translate-x-0' : '-translate-x-full',
         )}
         style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))' }}
       >
-        <div className="flex h-[107px] shrink-0 items-center gap-3 px-5">
+        <div className="flex h-[107px] shrink-0 items-center gap-3 px-4 2xl:px-5">
           <img src={crest} alt="Bangladesh Navy" className="h-[65px] w-[69px] object-contain" />
           <div className="font-brand leading-tight text-white">
-            <div className="text-xl font-semibold">Central Inventory</div>
-            <div className="text-base font-medium">Management System</div>
+            <div className="text-[18px] font-semibold 2xl:text-xl">Central Inventory</div>
+            <div className="text-[15px] font-medium 2xl:text-base">Management System</div>
           </div>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-[15px] pb-6 pt-[10px]">
+        <nav className="flex-1 overflow-y-auto px-3 pb-6 pt-[10px] 2xl:px-[15px]">
           <ul className="flex flex-col gap-1">
             {items.map((item) => (
               <SidebarItem
@@ -82,7 +82,7 @@ function SidebarItem({
           to={item.to}
           onClick={onNavigate}
           className={cn(
-            'flex h-10 items-center gap-3 rounded-tag px-[15px] text-17 capitalize tracking-[0.17px] transition-colors hover:bg-sidebar-hoverBg',
+            'flex h-10 items-center gap-2.5 rounded-tag px-3 text-[15px] capitalize tracking-[0.15px] transition-colors hover:bg-sidebar-hoverBg 2xl:gap-3 2xl:px-[15px] 2xl:text-17 2xl:tracking-[0.17px]',
             active && 'bg-sidebar-openBg text-sidebar-active',
           )}
         >
@@ -98,17 +98,17 @@ function SidebarItem({
         type="button"
         onClick={onToggle}
         className={cn(
-          'flex h-10 w-full items-center gap-3 rounded-tag px-[15px] text-17 capitalize tracking-[0.17px] transition-colors hover:bg-sidebar-hoverBg',
+          'flex h-10 w-full items-center gap-2.5 rounded-tag px-3 text-[15px] capitalize tracking-[0.15px] transition-colors hover:bg-sidebar-hoverBg 2xl:gap-3 2xl:px-[15px] 2xl:text-17 2xl:tracking-[0.17px]',
           expanded && 'bg-sidebar-openBg text-sidebar-active',
         )}
         aria-expanded={expanded}
       >
         <Icon size={18} className={cn('shrink-0', expanded ? 'opacity-100' : 'opacity-75')} />
         <span className="flex-1 truncate text-left">{item.label}</span>
-        {expanded ? <ChevronDown size={22} className="text-[#D2C3C3]" /> : <ChevronRight size={22} />}
+        {expanded ? <ChevronDown size={20} className="shrink-0 text-[#D2C3C3]" /> : <ChevronRight size={20} className="shrink-0" />}
       </button>
       {expanded && item.children && (
-        <ul className="mt-2.5 flex flex-col gap-1 pl-[15px]">
+        <ul className="mt-2.5 flex flex-col gap-1 pl-2 2xl:pl-[15px]">
           {item.children.map((c) => {
             const active = pathname === c.to || pathname.startsWith(c.to + '/')
             return (
@@ -117,7 +117,7 @@ function SidebarItem({
                   to={c.to}
                   onClick={onNavigate}
                   className={cn(
-                    'group flex h-10 items-center gap-4 rounded-tag pl-5 pr-[15px] text-15 capitalize tracking-[0.15px] transition-colors hover:bg-sidebar-hoverBg',
+                    'group flex h-10 items-center gap-3 rounded-tag pl-4 pr-3 text-[14px] capitalize tracking-[0.14px] transition-colors hover:bg-sidebar-hoverBg 2xl:gap-4 2xl:pl-5 2xl:pr-[15px] 2xl:text-15',
                     active && 'bg-sidebar-subActiveBg text-white',
                   )}
                 >

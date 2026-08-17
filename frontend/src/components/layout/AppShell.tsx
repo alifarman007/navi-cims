@@ -12,9 +12,9 @@ export function AppShell() {
   return (
     <div className="min-h-screen bg-page">
       <Sidebar open={menuOpen} onClose={() => setMenuOpen(false)} />
-      <div className="flex min-h-screen flex-col xl:pl-sidebar">
+      <div className="flex min-h-screen flex-col xl:pl-[280px] 2xl:pl-sidebar">
         <Header onMenu={() => setMenuOpen(true)} />
-        <main className="flex-1 px-6 py-6">
+        <main className="flex-1 px-4 py-5 md:px-6 md:py-6">
           <div className="mx-auto w-full max-w-content">
             <Outlet />
           </div>

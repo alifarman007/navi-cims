@@ -92,7 +92,7 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-6">
       {/* stat tiles */}
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-8">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-8">
         <Stat title="Items" value={c.items} icon={<Package size={20} />} to="/items/item" />
         <Stat title="Ships / Bases" value={c.ship_bases} icon={<Ship size={20} />} to="/ship-base/ship-base" />
         <Stat title="Stores" value={c.stores} icon={<Warehouse size={20} />} to="/inventory/store" />
@@ -275,9 +275,9 @@ function Stat({
   const body = (
     <div className="card flex h-full items-center gap-3 px-4 py-4 transition-shadow hover:shadow-card">
       <span className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-card ${tones[tone]}`}>{icon}</span>
-      <div className="min-w-0">
-        <div className="text-2xl font-medium leading-none text-ink-heading">{fmtNumber(value)}</div>
-        <div className="mt-1 truncate text-xs text-ink-muted">{title}</div>
+      <div className="min-w-0 flex-1">
+        <div className="text-2xl font-medium leading-none text-ink-heading 2xl:text-[22px]">{fmtNumber(value)}</div>
+        <div className="mt-1 text-xs leading-snug text-ink-muted">{title}</div>
       </div>
     </div>
   )
