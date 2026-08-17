@@ -70,6 +70,7 @@ navi-cims/
 - Modals: "Item Details" read-only detail popup (header strip `#E3E8FF`, print + close, label : value rows); "Are you sure?" confirm dialog (icon, Roboto 32 title, Yes `#1C3586` / Cancel `#A49C9C`); Comment dialog ("Demand Back"/"Demand Forwarded": required textarea, Cancel/Confirm `#4558AE`).
 - Login: full-bleed navy photo bg, left hero "Welcome to" (Barlow 42 `#AFB58B`) + "Central Inventory Management Software" (Barlow Bold 60 white); right card 488 px `#F4F7FF` with crest, User Id, Password, Remember me, "Forgot your password?", Login button `#1C3586`; footer "All Rights Reserved © 2026 CIMS | Designed & Developed by TotalOfftec."
 - Screens NOT in Figma (Dashboard, Reports, Procurement Item Info, Forgot/Reset password, Notifications) reuse the same components/tokens; keep them simple and consistent.
+- **Responsive rules**: sidebar 325 px at ≥1536 px CSS width, 280 px (smaller type) at 1280–1535, off-canvas drawer below 1280; header shows only the last breadcrumb + icon-only Back below `md`; forms are 1 column on phones; tables scroll inside their card; the dashboard uses **CSS container queries** (`.dash*` classes in `globals.css`) so tiles/charts respond to content width, not viewport (2 → 4 → 8 tiles per row at 640 / 1500 px of content). Never size a grid by viewport when the sidebar or zoom can change the available width.
 
 ## 5. Build phases & status
 0. [DONE] Requirements read (SRS, DSIG), Figma fully extracted (10 agents, all screens/modals/tokens), gap analysis, this file, docs/.

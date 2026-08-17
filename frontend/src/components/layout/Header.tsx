@@ -83,20 +83,20 @@ export function Header({ onMenu }: { onMenu: () => void }) {
     .toUpperCase()
 
   return (
-    <header className="sticky top-0 z-20 flex h-header items-center justify-between bg-white px-5 shadow-bar">
+    <header className="sticky top-0 z-20 flex h-header items-center justify-between gap-3 bg-white px-3 shadow-bar sm:px-5">
       <div className="flex min-w-0 items-center gap-3">
         <button type="button" onClick={onMenu} className="rounded p-1 text-ink-cell hover:bg-gray-100 xl:hidden" aria-label="Open menu">
           <Menu size={24} />
         </button>
         <Button variant="back" onClick={() => navigate(-1)} iconLeft={<ArrowLeft size={16} />} className="opacity-60 hover:opacity-100">
-          Back
+          <span className="hidden sm:inline">Back</span>
         </Button>
         <nav className="flex min-w-0 items-center gap-2 text-base" aria-label="Breadcrumb">
           {crumbs.map((c, i) => {
             const last = i === crumbs.length - 1
             return (
-              <span key={i} className="flex min-w-0 items-center gap-2">
-                {i > 0 && <ChevronRight size={16} className="shrink-0 text-[#858687]" />}
+              <span key={i} className={cn('min-w-0 items-center gap-2', last ? 'flex' : 'hidden md:flex')}>
+                {i > 0 && <ChevronRight size={16} className="hidden shrink-0 text-[#858687] md:block" />}
                 {last ? (
                   <span className="truncate text-15 text-primary">{c.label}</span>
                 ) : c.to ? (
@@ -112,10 +112,10 @@ export function Header({ onMenu }: { onMenu: () => void }) {
         </nav>
       </div>
 
-      <div className="flex items-center gap-6">
+      <div className="flex shrink-0 items-center gap-3 sm:gap-6">
         <Popover
           align="right"
-          className="w-[360px]"
+          className="w-[min(360px,calc(100vw-1.5rem))]"
           trigger={({ toggle }) => (
             <button type="button" onClick={toggle} className="relative rounded p-1 text-ink-user hover:bg-gray-100" aria-label="Notifications">
               <Bell size={24} strokeWidth={1.8} />

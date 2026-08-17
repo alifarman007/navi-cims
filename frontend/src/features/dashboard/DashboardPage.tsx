@@ -90,9 +90,9 @@ export default function DashboardPage() {
   const byShip = d.allocations_by_ship_base.map((s) => ({ ...s, qty: Number(s.qty) })).slice(0, 10)
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="dash flex flex-col gap-6">
       {/* stat tiles */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-8">
+      <div className="dash-stats">
         <Stat title="Items" value={c.items} icon={<Package size={20} />} to="/items/item" />
         <Stat title="Ships / Bases" value={c.ship_bases} icon={<Ship size={20} />} to="/ship-base/ship-base" />
         <Stat title="Stores" value={c.stores} icon={<Warehouse size={20} />} to="/inventory/store" />
@@ -104,8 +104,8 @@ export default function DashboardPage() {
       </div>
 
       {/* charts row 1 */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-        <ChartCard title="Allocations by Fiscal Year" subtitle="Allocation vs Sanction (count)" className="xl:col-span-2">
+      <div className="dash-charts-1">
+        <ChartCard title="Allocations by Fiscal Year" subtitle="Allocation vs Sanction (count)">
           {d.allocations_by_fiscal_year.length === 0 ? (
             <EmptyState title="No allocations yet" />
           ) : (
@@ -141,7 +141,7 @@ export default function DashboardPage() {
       </div>
 
       {/* charts row 2 */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
+      <div className="dash-charts-2">
         <ChartCard title="Items by Category" subtitle="Top 10 categories">
           {byCategory.length === 0 ? (
             <EmptyState title="No items yet" />
@@ -190,8 +190,8 @@ export default function DashboardPage() {
       </div>
 
       {/* tables */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-        <section className="card px-6 pb-6 pt-5">
+      <div className="dash-tables">
+        <section className="card min-w-0 px-6 pb-6 pt-5">
           <div className="mb-3 flex items-center justify-between">
             <h3 className="text-lg font-medium text-ink-heading">Recent Allocations</h3>
             <Link to="/allocation" className="text-sm text-primary hover:underline">
@@ -212,7 +212,7 @@ export default function DashboardPage() {
             empty="No allocations yet"
           />
         </section>
-        <section className="card px-6 pb-6 pt-5">
+        <section className="card min-w-0 px-6 pb-6 pt-5">
           <div className="mb-3 flex items-center justify-between">
             <h3 className="text-lg font-medium text-ink-heading">Low Stock</h3>
             <Link to="/reports/low-stock" className="text-sm text-primary hover:underline">
@@ -273,20 +273,20 @@ function Stat({
     grey: 'bg-gray-100 text-ink-cell',
   }
   const body = (
-    <div className="card flex h-full items-center gap-3 px-4 py-4 transition-shadow hover:shadow-card">
-      <span className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-card ${tones[tone]}`}>{icon}</span>
+    <div className="card flex h-full min-w-0 items-center gap-3 overflow-hidden px-3 py-3 transition-shadow hover:shadow-card sm:px-4 sm:py-4">
+      <span className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-card sm:h-11 sm:w-11 ${tones[tone]}`}>{icon}</span>
       <div className="min-w-0 flex-1">
-        <div className="text-2xl font-medium leading-none text-ink-heading 2xl:text-[22px]">{fmtNumber(value)}</div>
-        <div className="mt-1 text-xs leading-snug text-ink-muted">{title}</div>
+        <div className="truncate text-[22px] font-medium leading-none tabular-nums text-ink-heading" title={String(value)}>{fmtNumber(value)}</div>
+        <div className="mt-1 break-words text-xs leading-snug text-ink-muted">{title}</div>
       </div>
     </div>
   )
-  return to ? <Link to={to}>{body}</Link> : body
+  return to ? <Link to={to} className="block min-w-0">{body}</Link> : body
 }
 
 function ChartCard({ title, subtitle, children, className }: { title: string; subtitle?: string; children: React.ReactNode; className?: string }) {
   return (
-    <section className={`card px-5 pb-4 pt-4 ${className ?? ''}`}>
+    <section className={`card min-w-0 overflow-hidden px-4 pb-4 pt-4 sm:px-5 ${className ?? ''}`}>
       <div className="mb-2">
         <h3 className="text-base font-medium text-ink-heading">{title}</h3>
         {subtitle && <p className="text-xs text-ink-muted">{subtitle}</p>}

@@ -79,3 +79,49 @@
     display: none !important;
   }
 }
+
+/* ------------------------------------------------------------------ dashboard layout
+   Container queries: the dashboard responds to the CONTENT width (not the viewport), so it behaves
+   the same with a collapsed/expanded sidebar and at any browser zoom. */
+.dash {
+  container-type: inline-size;
+  container-name: dash;
+}
+.dash-stats {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.dash-charts-1,
+.dash-charts-2,
+.dash-tables {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+@container dash (min-width: 640px) {
+  .dash-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@container dash (min-width: 760px) {
+  .dash-charts-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container dash (min-width: 1000px) {
+  .dash-charts-1 {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+  .dash-charts-2 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .dash-tables {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container dash (min-width: 1500px) {
+  .dash-stats {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
