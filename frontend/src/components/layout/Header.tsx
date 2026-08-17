@@ -3,6 +3,7 @@ import { Link, useLocation, useMatches, useNavigate } from 'react-router-dom'
 import { ArrowLeft, Bell, ChevronRight, Menu, LogOut, KeyRound } from 'lucide-react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useAuthStore } from '@/app/store/auth'
+import { isDesktop, useUiStore } from '@/app/store/ui'
 import { authApi } from '@/api/auth'
 import { findNav } from '@/lib/nav'
 import { cn, fmtDateTime } from '@/lib/utils'
@@ -47,8 +48,10 @@ function useCrumbs(): Crumb[] {
  * Figma header: 80px white bar with shadow; left = Back pill + breadcrumb (parent #585858 16px, current #1C3586 15px);
  * right = bell with red badge + user chip (avatar 38, "Admin" 13 #797474 / name 15 #555) → logout popover.
  */
-export function Header({ onMenu }: { onMenu: () => void }) {
+export function Header() {
   const navigate = useNavigate()
+  const { toggleSidebar, setDrawerOpen, sidebarCollapsed } = useUiStore()
+  const onMenu = () => (isDesktop() ? toggleSidebar() : setDrawerOpen(true))
   const crumbs = useCrumbs()
   const { user, clear, refreshToken } = useAuthStore()
   const qc = useQueryClient()
@@ -85,7 +88,13 @@ export function Header({ onMenu }: { onMenu: () => void }) {
   return (
     <header className="sticky top-0 z-20 flex h-header items-center justify-between gap-3 bg-white px-3 shadow-bar sm:px-5">
       <div className="flex min-w-0 items-center gap-3">
-        <button type="button" onClick={onMenu} className="rounded p-1 text-ink-cell hover:bg-gray-100 xl:hidden" aria-label="Open menu">
+        <button
+          type="button"
+          onClick={onMenu}
+          className="rounded-tag p-1.5 text-ink-cell transition-colors hover:bg-strip hover:text-primary"
+          aria-label={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
           <Menu size={24} />
         </button>
         <Button variant="back" onClick={() => navigate(-1)} iconLeft={<ArrowLeft size={16} />} className="opacity-60 hover:opacity-100">

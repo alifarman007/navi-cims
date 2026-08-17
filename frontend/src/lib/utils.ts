@@ -10,7 +10,14 @@ import type { ApiError, ListQuery } from '@/types/api'
 const twMerge = extendTailwindMerge({
   extend: {
     classGroups: {
+      // custom theme keys from tailwind.config.ts — without these, tailwind-merge cannot detect conflicts
       'font-size': [{ text: ['13', '14.5', '15', '17'] }],
+      w: [{ w: ['sidebar', 'content'] }],
+      'max-w': [{ 'max-w': ['content'] }],
+      h: [{ h: ['header', 'footer', 'input', 'btn', 'row'] }],
+      pl: [{ pl: ['sidebar'] }],
+      rounded: [{ rounded: ['card', 'input', 'tag'] }],
+      shadow: [{ shadow: ['bar', 'modal', 'card'] }],
     },
   },
 })
