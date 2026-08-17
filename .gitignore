@@ -37,3 +37,4 @@ Thumbs.db
 
 # screenshots from frontend/scripts/shoot.py
 frontend/.screenshots/
+*.tsbuildinfo
