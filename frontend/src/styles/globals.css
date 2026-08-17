@@ -1,0 +1,81 @@
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/600.css';
+@import '@fontsource/roboto/700.css';
+@import '@fontsource/poppins/500.css';
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/barlow/400.css';
+@import '@fontsource/barlow/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-page font-sans text-ink-body antialiased;
+    font-size: 14px;
+  }
+  * {
+    @apply border-line;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    @apply text-ink-placeholder/50;
+  }
+  /* thin scrollbar like the design's decorative scrollbar */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f2f2f2;
+    border-radius: 100px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #dedede;
+    border-radius: 100px;
+  }
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  a:focus-visible {
+    @apply outline-none ring-2 ring-primary-400/60 ring-offset-0;
+  }
+}
+
+@layer components {
+  /* Figma: card 8px radius, border rgba(0,0,0,.1) */
+  .card {
+    @apply rounded-card border border-black/10 bg-white;
+  }
+  /* Header strip used by cards, tables and modals */
+  .strip {
+    @apply bg-strip;
+  }
+  /* form input base (h40, border #D2D2D2, r5) */
+  .input-base {
+    @apply h-input w-full rounded-input border border-line-input bg-white px-3 text-[13.6px] text-ink-heading transition-colors placeholder:text-ink-placeholder/50 focus:border-primary-400 disabled:cursor-not-allowed disabled:bg-gray-50;
+  }
+  .table-filter-input {
+    @apply h-9 w-full rounded-tag border border-line-filter bg-white pl-8 pr-2 text-sm text-ink-cell placeholder:text-ink-placeholder/50 focus:border-primary-400;
+  }
+  .sr-only-focusable:focus {
+    @apply not-sr-only;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

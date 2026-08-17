@@ -1,0 +1,39 @@
+# --- client documents (RESTRICTED) ---
+files_given_by_client/
+
+# --- secrets ---
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+
+# --- python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+build/
+htmlcov/
+.coverage
+
+# --- node ---
+node_modules/
+frontend/dist/
+frontend/.vite/
+npm-debug.log*
+
+# --- os / ide ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# screenshots from frontend/scripts/shoot.py
+frontend/.screenshots/
